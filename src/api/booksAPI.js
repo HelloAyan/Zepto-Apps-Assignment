@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 const API_URL = 'https://gutendex.com/books';
-const fetchBooks = async () => {
+export const fetchBooks = async () => {
     try {
         const response = await axios.get(API_URL);
         return response.data;
@@ -11,5 +11,3 @@ const fetchBooks = async () => {
         throw error;
     }
 }
-
-export default fetchBooks;
