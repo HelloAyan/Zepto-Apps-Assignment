@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaHeart } from 'react-icons/fa';
 import { GoHeart } from 'react-icons/go';
+import { Link } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -48,27 +49,31 @@ const BookCard = ({ book }) => {
             </div>
 
             <div className="bg-white shadow-md p-4 rounded-lg h-[360px] flex flex-col justify-between border border-[var(--border-color)] pb-2">
-                {book.formats["image/jpeg"] && (
-                    <img
-                        src={book.formats["image/jpeg"]}
-                        alt={book.title}
-                        className="w-full h-[150px] object-full rounded-lg mb-4"
-                    />
-                )}
+                <Link to={`/single-book/${book.id}`}>
+                    {book.formats["image/jpeg"] && (
+                        <img
+                            src={book.formats["image/jpeg"]}
+                            alt={book.title}
+                            className="w-full h-[150px] object-full rounded-lg mb-4"
+                        />
+                    )}
+                </Link>
                 <div className="flex-1">
-                    <h3 className=" text-[var(--primary-color)] text-lg font-semibold leading-6">
-                        Title:
-                        <span className="font-normal pl-2"> {book.title.length > 50
-                            ? `${book.title.substring(0, 50)}...`
-                            : book.title}
-                        </span>
-                    </h3>
-                    <p className="text-[var(--primary-color)] font-semibold">
-                        Author Name:
-                        <span className="font-normal pl-2">
-                            {book.authors.map((author) => author.name).join(', ')}
-                        </span>
-                    </p>
+                    <Link to={`/single-book/${book.id}`}>
+                        <h3 className=" text-[var(--primary-color)] text-lg font-semibold leading-6">
+                            Title:
+                            <span className="font-normal pl-2"> {book.title.length > 50
+                                ? `${book.title.substring(0, 50)}...`
+                                : book.title}
+                            </span>
+                        </h3>
+                        <p className="text-[var(--primary-color)] font-semibold">
+                            Author Name:
+                            <span className="font-normal pl-2">
+                                {book.authors.map((author) => author.name).join(', ')}
+                            </span>
+                        </p>
+                    </Link>
                     <p className="text-[var(--primary-color)] font-semibold">
                         Genre:
                         <span className="font-normal pl-2">
@@ -81,6 +86,7 @@ const BookCard = ({ book }) => {
                         ID:
                         <span className="font-normal pl-2">{book.id}</span>
                     </p>
+
                 </div>
             </div>
 
