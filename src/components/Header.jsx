@@ -73,8 +73,8 @@ const Header = () => {
 
                 {/* Desktop Menu */}
                 <div className="hidden lg:flex lg:items-center space-x-6 text-white">
-                    <Link to="#" className="hover:text-gray-200">Home</Link>
-                    <Link to="#" className="hover:text-gray-200">About</Link>
+                    <Link to="/" className="hover:text-gray-200">Home</Link>
+                    <Link to="/wishlist" className="hover:text-gray-200">Wishlist</Link>
                     <Link to="#" className="hover:text-gray-200">Services</Link>
                     <Link to="#" className="hover:text-gray-200">Contact</Link>
                 </div>
@@ -84,8 +84,8 @@ const Header = () => {
             {isOpen && (
                 <div className="lg:hidden">
                     <div className="space-y-4 p-4 text-white">
-                        <Link to="#" className="block hover:text-gray-200">Home</Link>
-                        <Link to="#" className="block hover:text-gray-200">About</Link>
+                        <Link to="/" className="block hover:text-gray-200">Home</Link>
+                        <Link to="/wishlist" className="block hover:text-gray-200">Wishlist </Link>
                         <Link to="#" className="block hover:text-gray-200">Services</Link>
                         <Link to="#" className="block hover:text-gray-200">Contact</Link>
                     </div>
