@@ -2,13 +2,9 @@
 
 This project has been developed for Zepto App Assignment.
 
-## Live Link
+## Live Project
 
-This project has been deployed to versel. You can also view by given url link:
-```bash
-https://zepto-apps-assignment-two.vercel.app/
-
-```
+Check out the live version of the project here: [Live Project](https://zepto-apps-assignment-two.vercel.app/)
 
 ## Table of Contents
 
