@@ -58,7 +58,10 @@ const BookCard = ({ book }) => {
                 <div className="flex-1">
                     <h3 className=" text-[var(--primary-color)] text-lg font-semibold leading-6">
                         Title:
-                        <span className="font-normal pl-2">{book.title}</span>
+                        <span className="font-normal pl-2"> {book.title.length > 50
+                            ? `${book.title.substring(0, 50)}...`
+                            : book.title}
+                        </span>
                     </h3>
                     <p className="text-[var(--primary-color)] font-semibold">
                         Author Name:

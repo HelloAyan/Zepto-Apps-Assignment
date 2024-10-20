@@ -5,6 +5,7 @@ import {
 import DefaultLayout from "../layout/DefaultLayout";
 import Wishlist from "../pages/Wishlist";
 import BookList from "../components/BookList";
+import SingleBook from "../pages/SingleBook";
 
 const router = createBrowserRouter([
     {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
             {
                 path: "/wishlist",
                 element: <Wishlist />,
+            },
+            {
+                path: "/single-book",
+                element: <SingleBook />,
             },
         ],
     },
