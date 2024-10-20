@@ -9,7 +9,14 @@ const BookList = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedGenre, setSelectedGenre] = useState('All');
     const [genres, setGenres] = useState([]);
+    const [previousSearches, setPreviousSearches] = useState([]);
     const itemsPerPage = 6;
+
+
+    useEffect(() => {
+        const storedSearches = JSON.parse(localStorage.getItem('previousSearches')) || [];
+        setPreviousSearches(storedSearches);
+    }, []);
 
     // Extract unique genres/topics from API data
     useEffect(() => {
@@ -26,14 +33,28 @@ const BookList = () => {
         }
     }, [books]);
 
-    if (loading) return <Loader />;
-    if (error) return <div>{error}</div>;
-
     // Filter books by title and genre/topic
     const filteredBooks = books.filter(book =>
         book.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
         (selectedGenre === 'All' || book.bookshelves.includes(selectedGenre))
     );
+
+    // Save the search term and results to localStorage
+    useEffect(() => {
+        if (searchTerm && filteredBooks.length > 0) {
+            const searchItem = { term: searchTerm, results: filteredBooks.slice(0, 5) }; // Store up to 5 results
+            let updatedSearches = [searchItem, ...previousSearches.filter(item => item.term !== searchTerm)];
+
+            // Limit stored searches to 5 items
+            if (updatedSearches.length > 5) updatedSearches = updatedSearches.slice(0, 5);
+
+            localStorage.setItem('previousSearches', JSON.stringify(updatedSearches));
+            setPreviousSearches(updatedSearches);
+        }
+    }, [searchTerm, filteredBooks]);
+
+    if (loading) return <Loader />;
+    if (error) return <div>{error}</div>;
 
     // Pagination logic
     const totalPages = Math.ceil(filteredBooks.length / itemsPerPage);
@@ -49,7 +70,7 @@ const BookList = () => {
     return (
         <div className='w-[95%] md:w-[90%] lg:w-[70%] mx-auto my-8'>
             {/* Search and Dropdown Filter Section */}
-            <div className="flex gap-y-3 lg:gap-x-10 flex-col lg:flex-row  lg:justify-between items-center mb-8">
+            <div className="flex gap-y-3 lg:gap-x-10 flex-col lg:flex-row lg:justify-between items-center mb-8">
                 {/* Search Bar */}
                 <input
                     type="text"
@@ -60,7 +81,15 @@ const BookList = () => {
                         setSearchTerm(e.target.value);
                         setCurrentPage(1);
                     }}
+                    list="previousSearches" // Datalist for previous searches
                 />
+                <datalist id="previousSearches" className=' bg-slate-200'>
+                    {previousSearches.map((searchItem, index) => (
+                        <option key={index} value={searchItem.term}>
+                            {searchItem.term}
+                        </option>
+                    ))}
+                </datalist>
 
                 {/* Dropdown Filter */}
                 <div className="relative w-[80%] lg:w-[30%]">
