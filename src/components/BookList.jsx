@@ -4,12 +4,12 @@ import BookCard from './BookCard';
 import Loader from './Loader';
 
 const BookList = () => {
-    const { books, loading, error } = useFetchBooks(); // Fetch books from API
-    const [currentPage, setCurrentPage] = useState(1); // Pagination state
-    const [searchTerm, setSearchTerm] = useState(''); // State to track the search input
-    const [selectedGenre, setSelectedGenre] = useState('All'); // State for dropdown filter
-    const [genres, setGenres] = useState([]); // State to store unique genres/topics
-    const itemsPerPage = 6; // Number of books per page
+    const { books, loading, error } = useFetchBooks();
+    const [currentPage, setCurrentPage] = useState(1);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [selectedGenre, setSelectedGenre] = useState('All');
+    const [genres, setGenres] = useState([]);
+    const itemsPerPage = 6;
 
     // Extract unique genres/topics from API data
     useEffect(() => {
@@ -22,7 +22,7 @@ const BookList = () => {
                     });
                 }
             });
-            setGenres(['All', ...Array.from(uniqueGenres)]); // Include 'All' as the default option
+            setGenres(['All', ...Array.from(uniqueGenres)]);
         }
     }, [books]);
 
@@ -58,7 +58,7 @@ const BookList = () => {
                     value={searchTerm}
                     onChange={(e) => {
                         setSearchTerm(e.target.value);
-                        setCurrentPage(1); // Reset to first page when search changes
+                        setCurrentPage(1);
                     }}
                 />
 

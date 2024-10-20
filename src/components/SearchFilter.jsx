@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useFetchBooks } from '../hooks/useFetchBooks';
 
 const SearchFilter = () => {
-    const { books, loading, error } = useFetchBooks(); // Fetching books from the API
-    const [searchTerm, setSearchTerm] = useState(''); // State to hold search input
-    const [filteredBooks, setFilteredBooks] = useState([]); // State to hold filtered books
+    const { books, loading, error } = useFetchBooks();
+    const [searchTerm, setSearchTerm] = useState('');
+    const [filteredBooks, setFilteredBooks] = useState([]);
 
     // Use effect to filter books when the search term changes
     useEffect(() => {
@@ -32,7 +32,7 @@ const SearchFilter = () => {
                 placeholder="Search books by title"
                 className="border p-2 rounded-lg w-full mb-4"
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)} // Update search term
+                onChange={(e) => setSearchTerm(e.target.value)}
             />
 
             {/* Display filtered books */}

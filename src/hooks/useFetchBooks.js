@@ -9,8 +9,18 @@ export const useFetchBooks = () => {
     useEffect(() => {
         const getBooks = async () => {
             try {
-                const data = await fetchBooks();
-                setBooks(data.results);
+                const localData = localStorage.getItem('booksData');
+                if (localData) {
+                    // If data is found in localStorage, parse and set it
+                    setBooks(JSON.parse(localData));
+                    setLoading(false);
+                } else {
+                    // Otherwise, fetch the data from API
+                    const data = await fetchBooks();
+                    setBooks(data.results);
+                    localStorage.setItem('booksData', JSON.stringify(data.results));
+                    // Save data to localStorage
+                }
             } catch (error) {
                 setError('Failed to fetch books');
             } finally {
