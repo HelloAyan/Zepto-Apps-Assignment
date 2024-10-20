@@ -4,7 +4,7 @@ This project has been developed for Zepto App Assignment.
 
 ## Live Project
 
-Check out the live version of the project here: [Live Project](https://zepto-apps-assignment-two.vercel.app/)
+Check out the live version of the project here: (https://zepto-apps-assignment-two.vercel.app/)
 
 ## Table of Contents
 
